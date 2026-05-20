@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <rect width="1200" height="720" fill="#F3F4F6"/>
+  <rect x="70" y="70" width="1060" height="580" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="70" y="70" width="1060" height="50" rx="24" fill="#F9FAFB"/>
+  <circle cx="110" cy="95" r="8" fill="#D1D5DB"/>
+  <circle cx="135" cy="95" r="8" fill="#D1D5DB"/>
+  <circle cx="160" cy="95" r="8" fill="#D1D5DB"/>
+  <rect x="120" y="160" width="420" height="420" rx="14" fill="#ECFDF5"/>
+  <rect x="560" y="160" width="510" height="40" rx="8" fill="#E5E7EB"/>
+  <rect x="560" y="220" width="380" height="20" rx="6" fill="#D1D5DB"/>
+  <rect x="560" y="260" width="470" height="20" rx="6" fill="#D1D5DB"/>
+  <rect x="560" y="320" width="220" height="48" rx="10" fill="#059669"/>
+  <text x="585" y="352" fill="#FFFFFF" font-family="monospace" font-size="20">Comprar</text>
+</svg>
