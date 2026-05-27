@@ -7,6 +7,15 @@ import Image from "next/image";
 // ─── PROYECTOS ────────────────────────────────────────────────────────────────
 const projects = [
   {
+    title: "LumaDrinks",
+    description: "E-commerce de bebidas nootrópicas con quiz de personalización, suscripción a productos y experiencia de compra optimizada para conversión.",
+    category: "E-commerce full-stack · Nootropics",
+    tags: ["Next.js 15", "Shopify API", "Stripe", "Framer Motion"],
+    image: "/images/LumaImagenHero.png",
+    placeholder: { from: "#ecfdf5", to: "#6ee7b7", label: "LumaDrinks" },
+    link: "https://luma-drinks.vercel.app",
+  },
+  {
     title: "UltimateGym",
     description: "App de gimnasio donde los usuarios se apuntan a clases, consultan rutinas de ejercicio y construyen hábitos saludables con seguimiento personalizado.",
     category: "App full-stack · Salud & Fitness",
@@ -29,31 +38,22 @@ const projects = [
     description: "Web de restaurante con carta digital interactiva por categorías, galería del local y reserva de mesa con confirmación por email.",
     category: "Frontend web · Restauración",
     tags: ["Next.js", "TypeScript", "Supabase", "Stripe"],
-    image: "/images/proyectos/RaffaelloPort.png",
+    image: "/images/proyectos/PizzeriaRaffello2.png",
     placeholder: { from: "#fffbeb", to: "#fde68a", label: "Pizzería Raffaello" },
     link: "https://pizzeria-rafaello-demo2.vercel.app",
-  },
-  {
-    title: "LumaDrinks",
-    description: "E-commerce de bebidas nootrópicas con quiz de personalización, suscripción a productos y experiencia de compra optimizada para conversión.",
-    category: "E-commerce full-stack · Nootropics",
-    tags: ["Next.js 15", "Shopify API", "Stripe", "Framer Motion"],
-    image: "/images/proyectos/LumaPort.png",
-    placeholder: { from: "#ecfdf5", to: "#6ee7b7", label: "LumaDrinks" },
-    link: "https://luma-drinks.vercel.app",
   },
 ];
 
 export default function ProjectsSection() {
   return (
-    <section id="proyectos" className="w-full scroll-mt-20 min-h-[calc(100vh-5rem)] py-32 px-6 border-t border-zinc-200 bg-white">
+    <section id="proyectos" className="w-full scroll-mt-20 min-h-[calc(100vh-5rem)] py-32 px-6 border-t border-[#E5E7EB] bg-white">
       <div className="container mx-auto max-w-6xl">
 
         <div className="flex flex-col mb-16">
-          <span className="text-emerald-600 font-mono text-sm tracking-[0.3em] uppercase mb-4">03. Proyectos Destacados</span>
-          <h2 className="text-4xl font-bold text-zinc-900 tracking-tight">
+          <span className="text-[#0052FF] font-mono text-sm tracking-[0.3em] uppercase mb-4">03. Proyectos Destacados</span>
+          <h2 className="text-4xl font-bold text-[#111827] tracking-tight">
             Soluciones de software <br />
-            <span className="text-zinc-400 italic font-light">con impacto real.</span>
+            <span className="text-[#6B7280] italic font-light">con impacto real.</span>
           </h2>
         </div>
 
@@ -65,7 +65,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.14 }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl border border-zinc-200 bg-zinc-50/30 overflow-hidden hover:bg-white hover:shadow-2xl hover:shadow-zinc-200 transition-all duration-500"
+              className="group relative rounded-3xl border border-[#E5E7EB] bg-[#F9FAFB]/70 overflow-hidden hover:bg-white hover:shadow-2xl hover:shadow-[#E5E7EB] transition-all duration-500"
             >
               {/* Imagen / Placeholder clicable */}
               <a
@@ -73,7 +73,7 @@ export default function ProjectsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Ver proyecto ${project.title}`}
-                className="block h-56 border-b border-zinc-100 overflow-hidden"
+                className="block h-56 border-b border-[#F3F4F6] overflow-hidden"
               >
                 {project.image ? (
                   <div className="relative h-full w-full">
@@ -106,14 +106,14 @@ export default function ProjectsSection() {
 
               <div className="relative z-10 p-8">
                 <div className="mb-4 flex items-start justify-between gap-4">
-                  <p className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-mono font-semibold uppercase tracking-wider text-emerald-700">
+                  <p className="inline-flex rounded-full border border-[#B3C9FF] bg-[#EFF6FF] px-3 py-1 text-[11px] font-mono font-semibold uppercase tracking-wider text-[#0052FF]">
                     {project.category}
                   </p>
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-zinc-400 hover:text-emerald-600 transition-colors"
+                    className="text-[#6B7280] hover:text-[#0052FF] transition-colors"
                     aria-label={`Abrir ${project.title}`}
                   >
                     <ExternalLink className="w-5 h-5" />
@@ -127,12 +127,12 @@ export default function ProjectsSection() {
                   rel="noopener noreferrer"
                   className="group/title"
                 >
-                  <h3 className="mb-2 text-2xl font-bold text-zinc-900 transition-colors group-hover/title:text-emerald-600">
+                  <h3 className="mb-2 text-2xl font-bold text-[#111827] transition-colors group-hover/title:text-[#0052FF]">
                     {project.title}
                   </h3>
                 </a>
 
-                <p className="mb-5 text-zinc-600 leading-relaxed">
+                <p className="mb-5 text-[#6B7280] leading-relaxed">
                   {project.description}
                 </p>
 
@@ -140,7 +140,7 @@ export default function ProjectsSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded bg-zinc-100 px-2 py-0.5 text-[10px] font-mono text-zinc-500"
+                      className="rounded bg-[#F3F4F6] px-2 py-0.5 text-[10px] font-mono text-[#6B7280]"
                     >
                       {tag}
                     </span>

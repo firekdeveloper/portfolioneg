@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IP monogram favicon">
+  <defs>
+    <linearGradient id="ipBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0052FF"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#F9FAFB"/>
+  <rect x="6" y="6" width="52" height="52" rx="12" fill="none" stroke="#E5E7EB" stroke-width="2"/>
+
+  <path d="M20 18H29V22H25V46H20V18Z" fill="#111827"/>
+  <path d="M34 18H43C48 18 52 21.8 52 27.2C52 32.6 48 36.4 43 36.4H39V46H34V18ZM39 22V32.4H42.4C44.7 32.4 47 31 47 27.2C47 23.4 44.7 22 42.4 22H39Z" fill="url(#ipBlue)"/>
+</svg>

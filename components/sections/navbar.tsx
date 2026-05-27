@@ -17,16 +17,16 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white border-b-2 border-black">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white border-b-2 border-[#111827]">
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-6">
         {/* Logo */}
         <a
           href="#inicio"
-          className="text-2xl tracking-tight text-zinc-900 hover:text-zinc-700 transition-colors"
+          className="text-2xl tracking-tight text-[#111827] hover:text-[#374151] transition-colors"
           onClick={closeMenu}
         >
           <span className="font-serif font-semibold">Iv</span>
-          <span className="font-serif italic text-emerald-600 font-semibold">á</span>
+          <span className="font-serif italic text-[#0052FF] font-semibold">á</span>
           <span className="font-serif font-semibold">n Pons</span>
         </a>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-600 hover:text-emerald-600 transition-colors"
+              className="text-xs font-mono uppercase tracking-[0.2em] text-[#6B7280] hover:text-[#0052FF] transition-colors"
             >
               {link.label}
             </a>
@@ -46,7 +46,7 @@ export default function Navbar() {
         {/* Hamburger button */}
         <button
           type="button"
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 text-zinc-900 hover:bg-zinc-50 transition-colors"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#E5E7EB] text-[#111827] hover:bg-[#F3F4F6] transition-colors"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isOpen}
@@ -60,7 +60,7 @@ export default function Navbar() {
       {isOpen && (
         <nav
           id="mobile-nav"
-          className="md:hidden border-t-2 border-black bg-white"
+          className="md:hidden border-t-2 border-[#111827] bg-white"
         >
           <div className="mx-auto flex w-full max-w-6xl flex-col px-6 py-4">
             {navLinks.map((link) => (
@@ -68,7 +68,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="py-3 border-b border-zinc-100 last:border-none text-sm font-mono uppercase tracking-[0.15em] text-zinc-700 hover:text-emerald-600 transition-colors"
+                className="py-3 border-b border-[#F3F4F6] last:border-none text-sm font-mono uppercase tracking-[0.15em] text-[#6B7280] hover:text-[#0052FF] transition-colors"
               >
                 {link.label}
               </a>

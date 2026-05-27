@@ -110,7 +110,7 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
       {DIAG_SPOKES.map((s, i) => (
         <motion.line key={i}
           x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2}
-          stroke="rgba(5,150,105,0.35)" strokeWidth="0.9" strokeLinecap="round"
+          stroke="rgba(0,82,255,0.35)" strokeWidth="0.9" strokeLinecap="round"
           strokeDasharray="20 14"
           style={{ strokeDashoffset: dashOff, opacity: lineOp }}
         />
@@ -120,13 +120,13 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
       <g transform="translate(300,300)">
         <motion.g style={{ rotate: r1 }}>
           <circle cx="0" cy="0" r="220" fill="none"
-            stroke="rgba(5,150,105,0.42)" strokeWidth="1.8" strokeDasharray="260 140" />
+            stroke="rgba(0,82,255,0.42)" strokeWidth="1.8" strokeDasharray="260 140" />
           {TICKS_1.map((t, i) => (
             <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
-              stroke="rgba(52,211,153,0.72)" strokeWidth="1.8" strokeLinecap="round" />
+              stroke="rgba(59,130,246,0.72)" strokeWidth="1.8" strokeLinecap="round" />
           ))}
           <motion.line x1="0" y1="-55" x2="0" y2="-210"
-            stroke="rgba(5,150,105,0.55)" strokeWidth="1.2" strokeLinecap="round"
+            stroke="rgba(0,82,255,0.55)" strokeWidth="1.2" strokeLinecap="round"
             strokeDasharray="18 14"
             style={{ strokeDashoffset: dashOff, opacity: lineOp }}
           />
@@ -137,13 +137,13 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
       <g transform="translate(300,300)">
         <motion.g style={{ rotate: r2 }}>
           <circle cx="0" cy="0" r="168" fill="none"
-            stroke="rgba(52,211,153,0.34)" strokeWidth="1.2" strokeDasharray="200 100" />
+            stroke="rgba(59,130,246,0.34)" strokeWidth="1.2" strokeDasharray="200 100" />
           {TICKS_2.map((t, i) => (
             <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
-              stroke="rgba(52,211,153,0.68)" strokeWidth="1.5" strokeLinecap="round" />
+              stroke="rgba(59,130,246,0.68)" strokeWidth="1.5" strokeLinecap="round" />
           ))}
           <motion.line x1="0" y1="-50" x2="0" y2="-160"
-            stroke="rgba(52,211,153,0.50)" strokeWidth="1" strokeLinecap="round"
+            stroke="rgba(59,130,246,0.50)" strokeWidth="1" strokeLinecap="round"
             strokeDasharray="16 12"
             style={{ strokeDashoffset: dashOff, opacity: lineOp }}
           />
@@ -154,10 +154,10 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
       <g transform="translate(300,300)">
         <motion.g style={{ rotate: r3 }}>
           <circle cx="0" cy="0" r="115" fill="none"
-            stroke="rgba(16,185,129,0.32)" strokeWidth="1" strokeDasharray="140 70" />
+            stroke="rgba(0,82,255,0.32)" strokeWidth="1" strokeDasharray="140 70" />
           {NODES_3.map((n, i) => (
             <circle key={i} cx={n.cx} cy={n.cy} r="3.5"
-              fill="none" stroke="rgba(52,211,153,0.72)" strokeWidth="1.5" />
+              fill="none" stroke="rgba(59,130,246,0.72)" strokeWidth="1.5" />
           ))}
         </motion.g>
       </g>
@@ -166,17 +166,17 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
       <g transform="translate(300,300)">
         <motion.g style={{ rotate: r4 }}>
           <circle cx="0" cy="0" r="68" fill="none"
-            stroke="rgba(52,211,153,0.26)" strokeWidth="0.8" strokeDasharray="85 35" />
-          <line x1="-62" y1="0" x2="-74" y2="0" stroke="rgba(52,211,153,0.58)" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="62" y1="0" x2="74" y2="0"  stroke="rgba(52,211,153,0.58)" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="0" y1="-62" x2="0" y2="-74" stroke="rgba(52,211,153,0.58)" strokeWidth="1.3" strokeLinecap="round" />
-          <line x1="0" y1="62"  x2="0" y2="74"  stroke="rgba(52,211,153,0.58)" strokeWidth="1.3" strokeLinecap="round" />
+            stroke="rgba(59,130,246,0.26)" strokeWidth="0.8" strokeDasharray="85 35" />
+          <line x1="-62" y1="0" x2="-74" y2="0" stroke="rgba(59,130,246,0.58)" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="62" y1="0" x2="74" y2="0"  stroke="rgba(59,130,246,0.58)" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="0" y1="-62" x2="0" y2="-74" stroke="rgba(59,130,246,0.58)" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="0" y1="62"  x2="0" y2="74"  stroke="rgba(59,130,246,0.58)" strokeWidth="1.3" strokeLinecap="round" />
         </motion.g>
       </g>
 
       {/* Punto central */}
-      <circle cx="300" cy="300" r="5"  fill="rgba(5,150,105,0.58)" />
-      <circle cx="300" cy="300" r="11" fill="none" stroke="rgba(5,150,105,0.32)" strokeWidth="1" />
+      <circle cx="300" cy="300" r="5"  fill="rgba(0,82,255,0.58)" />
+      <circle cx="300" cy="300" r="11" fill="none" stroke="rgba(0,82,255,0.32)" strokeWidth="1" />
     </svg>
   );
 }
@@ -245,17 +245,17 @@ export default function HeroSection() {
         className="container relative mx-auto max-w-5xl text-center"
         style={{ zIndex: 6 }}
       >
-        <h1 className="text-balance text-5xl font-bold tracking-tighter text-zinc-900 sm:text-7xl lg:text-8xl">
-          Ingenierí­a de Software para <span className="text-emerald-600">negocios</span>
+        <h1 className="text-balance text-5xl font-bold tracking-tighter text-[#111827] sm:text-7xl lg:text-8xl">
+          Ingenierí­a de Software para <span className="text-[#0052FF]">negocios</span>
         </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-zinc-600 sm:text-xl leading-relaxed">
+        <p className="mx-auto mt-8 max-w-2xl text-lg text-[#6B7280] sm:text-xl leading-relaxed">
           Desarrollador Full Stack Jr. Construyo soluciones escalables y optimizadas
           alineadas con objetivos estratégicos.
         </p>
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button
             size="lg"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 h-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_4px_rgba(5,150,105,0.35)]"
+            className="bg-[#0052FF] hover:bg-[#003FD1] text-white px-8 h-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_4px_rgba(0,82,255,0.35)]"
           >
             Explorar Proyectos <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
