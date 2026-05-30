@@ -1,8 +1,16 @@
 ﻿"use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
+import {
+  animate,
+  motion,
+  MotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Button } from "@/components/ui/button";
+import PhysicalPlug from "@/components/ui/physical-plug";
 import { ArrowRight } from "lucide-react";
 
 // â”€â”€ Desktop: propiedades por capa de profundidad â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -41,7 +49,6 @@ function FloatingCard({ card, d, mouseX, mouseY }: {
 }) {
   const px = useTransform(mouseX, (v) => v * d.parallax);
   const py = useTransform(mouseY, (v) => v * d.parallax);
-  const floatAmp = card.depth === 2 ? 18 : card.depth === 1 ? 11 : 6;
 
   return (
     <motion.div
@@ -53,12 +60,12 @@ function FloatingCard({ card, d, mouseX, mouseY }: {
         className="rounded-2xl overflow-hidden"
         style={{ width: card.w, opacity: d.opacity, filter: d.blur > 0 ? `blur(${d.blur}px)` : undefined, boxShadow: d.shadow }}
         initial={{ rotate: card.rot, scale: 0.82, opacity: 0 }}
-        animate={{ rotate: [card.rot, card.rot + 1.2, card.rot, card.rot - 1.2, card.rot], scale: 1, opacity: d.opacity, y: [0, -floatAmp, 0] }}
+        animate={{ rotate: card.rot, scale: 1, opacity: d.opacity, y: 0 }}
         transition={{
-          rotate:  { duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay },
+          rotate:  { duration: 0.9, ease: "easeOut", delay: card.delay },
           scale:   { duration: 0.9, ease: "easeOut", delay: card.delay * 0.3 },
           opacity: { duration: 0.9, ease: "easeOut", delay: card.delay * 0.3 },
-          y:       { duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay },
+          y:       { duration: 0.9, ease: "easeOut", delay: card.delay * 0.3 },
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -184,6 +191,8 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isPowered, setIsPowered] = useState(false);
+
   const rawX = useSpring(0, { stiffness: 60, damping: 20 });
   const rawY = useSpring(0, { stiffness: 60, damping: 20 });
 
@@ -201,7 +210,15 @@ export default function HeroSection() {
     rawX.set(e.clientX - rect.left - rect.width / 2);
     rawY.set(e.clientY - rect.top - rect.height / 2);
   };
-  const handleLeave = () => { rawX.set(0); rawY.set(0); };
+  const handleLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
+
+  const handlePowerOn = () => {
+    if (isPowered) return;
+    setIsPowered(true);
+  };
 
   return (
     <section
@@ -211,55 +228,79 @@ export default function HeroSection() {
       onMouseLeave={handleLeave}
       className="relative min-h-[calc(100vh-5rem)] scroll-mt-20 w-full flex flex-col items-center justify-center overflow-hidden bg-[#F9FAFB] px-6"
     >
-      {/* Grid sutil */}
-      <div className="absolute inset-0 z-0 opacity-35">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]" />
-      </div>
+      <motion.div
+        className="absolute inset-0 flex flex-col items-center justify-center"
+        animate={isPowered ? { filter: "blur(0px)", scale: 1 } : { filter: "blur(2px)", scale: 0.985 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* Grid sutil */}
+        <div className="absolute inset-0 z-0 opacity-35">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]" />
+        </div>
 
-      {/* Fondo: orbs en mÃ³vil / tarjetas parallax en desktop */}
-      {isMobile !== null && (
-        isMobile
-          ? <MobileOrbits containerRef={containerRef} />
-          : DESKTOP_CARDS.map((card, i) => (
-              <FloatingCard key={`d-${i}`} card={card} d={DEPTH_DESKTOP[card.depth]} mouseX={rawX} mouseY={rawY} />
-            ))
-      )}
+        {/* Fondo: orbs en mÃ³vil / tarjetas parallax en desktop */}
+        {isMobile !== null && (
+          isMobile
+            ? <MobileOrbits containerRef={containerRef} />
+            : DESKTOP_CARDS.map((card, i) => (
+                <FloatingCard key={`d-${i}`} card={card} d={DEPTH_DESKTOP[card.depth]} mouseX={rawX} mouseY={rawY} />
+              ))
+        )}
 
-      {/* Vignette adaptada al contexto */}
-      <div
+        {/* Vignette adaptada al contexto */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 5,
+            background: isMobile
+              ? "radial-gradient(ellipse 55% 55% at 50% 50%, rgba(249,250,251,0.97) 0%, rgba(249,250,251,0.88) 22%, rgba(249,250,251,0.42) 46%, rgba(249,250,251,0.06) 65%, transparent 82%)"
+              : "radial-gradient(ellipse 46% 54% at 50% 50%, rgba(249,250,251,0.96) 0%, rgba(249,250,251,0.80) 35%, rgba(249,250,251,0.30) 60%, transparent 100%)",
+          }}
+        />
+
+        {/* Contenido */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="container relative mx-auto max-w-5xl text-center"
+          style={{ zIndex: 6 }}
+        >
+          <h1 className="text-balance text-5xl font-bold tracking-tighter text-[#111827] sm:text-7xl lg:text-8xl">
+            Ingenierí­a de Software para <span className="text-[#0052FF]">negocios</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-[#6B7280] sm:text-xl leading-relaxed">
+            Desarrollador Full Stack Jr. Construyo soluciones escalables y optimizadas
+            alineadas con objetivos estratégicos.
+          </p>
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-[#0052FF] hover:bg-[#003FD1] text-white px-8 h-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_4px_rgba(0,82,255,0.35)]"
+            >
+              Explorar Proyectos <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Dark veil — fades out when powered on */}
+      <motion.div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 5,
-          background: isMobile
-            ? "radial-gradient(ellipse 55% 55% at 50% 50%, rgba(249,250,251,0.97) 0%, rgba(249,250,251,0.88) 22%, rgba(249,250,251,0.42) 46%, rgba(249,250,251,0.06) 65%, transparent 82%)"
-            : "radial-gradient(ellipse 46% 54% at 50% 50%, rgba(249,250,251,0.96) 0%, rgba(249,250,251,0.80) 35%, rgba(249,250,251,0.30) 60%, transparent 100%)",
-        }}
+        style={{ zIndex: 20, background: "rgba(2, 6, 23, 0.94)" }}
+        animate={isPowered ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* Contenido */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="container relative mx-auto max-w-5xl text-center"
-        style={{ zIndex: 6 }}
+        className="absolute inset-0 z-30"
+        animate={isPowered ? { opacity: 0, scale: 0.96 } : { opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        style={{ pointerEvents: isPowered ? "none" : "auto" }}
       >
-        <h1 className="text-balance text-5xl font-bold tracking-tighter text-[#111827] sm:text-7xl lg:text-8xl">
-          Ingenierí­a de Software para <span className="text-[#0052FF]">negocios</span>
-        </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-[#6B7280] sm:text-xl leading-relaxed">
-          Desarrollador Full Stack Jr. Construyo soluciones escalables y optimizadas
-          alineadas con objetivos estratégicos.
-        </p>
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <Button
-            size="lg"
-            className="bg-[#0052FF] hover:bg-[#003FD1] text-white px-8 h-12 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_4px_rgba(0,82,255,0.35)]"
-          >
-            Explorar Proyectos <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
+        <PhysicalPlug isPowered={isPowered} onPowerToggle={handlePowerOn} />
       </motion.div>
     </section>
   );

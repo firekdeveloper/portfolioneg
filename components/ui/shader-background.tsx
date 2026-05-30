@@ -111,6 +111,8 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
       return;
     }
 
+    let isVisible = true;
+
     const loadShader = (type: number, source: string): WebGLShader | null => {
       const shader = gl.createShader(type);
       if (!shader) {
@@ -189,9 +191,30 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
 
     const startTime = performance.now();
     let rafId = 0;
+    let lastFrameTime = 0;
+    const frameInterval = 1000 / 30;
+
+    const scheduleRender = () => {
+      if (rafId === 0) {
+        rafId = requestAnimationFrame(render);
+      }
+    };
 
     const render = () => {
+      rafId = 0;
+
+      if (!isVisible) {
+        return;
+      }
+
       const currentTime = (performance.now() - startTime) / 1000;
+
+      if (performance.now() - lastFrameTime < frameInterval) {
+        scheduleRender();
+        return;
+      }
+
+      lastFrameTime = performance.now();
 
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -205,13 +228,27 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
       gl.enableVertexAttribArray(vertexPosition);
 
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      rafId = requestAnimationFrame(render);
+
+      scheduleRender();
     };
 
-    rafId = requestAnimationFrame(render);
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = Boolean(entry?.isIntersecting);
+
+        if (isVisible) {
+          scheduleRender();
+        }
+      },
+      { threshold: 0.05 },
+    );
+
+    visibilityObserver.observe(canvas);
+    scheduleRender();
 
     return () => {
       cancelAnimationFrame(rafId);
+      visibilityObserver.disconnect();
       resizeObserver.disconnect();
       gl.deleteBuffer(positionBuffer);
       gl.deleteShader(vertexShader);
