@@ -64,7 +64,7 @@ export default function ContactSection() {
           <div className="relative z-10 px-6 sm:px-12 md:px-20 py-12 md:py-20">
             {/* Texto de cabecera gris para mayor suavidad */}
             <span className="text-[#6B7280] font-mono text-sm tracking-[0.3em] uppercase mb-6 block">04. El siguiente paso</span>
-            <h2 className="text-4xl md:text-6xl font-bold text-[#111827] mb-8 tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-bold text-[#111827] mb-8 tracking-tighter leading-[1.02]">
               ¿Listo para elevar <br className="hidden sm:block" /> tu próximo proyecto?
             </h2>
 

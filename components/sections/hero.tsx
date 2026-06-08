@@ -188,10 +188,14 @@ function MobileOrbits({ containerRef }: { containerRef: React.RefObject<HTMLElem
   );
 }
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  isPowered: boolean;
+  onPowerToggle: () => void;
+};
+
+export default function HeroSection({ isPowered, onPowerToggle }: HeroSectionProps) {
   const containerRef = useRef<HTMLElement>(null);
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  const [isPowered, setIsPowered] = useState(false);
 
   const rawX = useSpring(0, { stiffness: 60, damping: 20 });
   const rawY = useSpring(0, { stiffness: 60, damping: 20 });
@@ -217,7 +221,7 @@ export default function HeroSection() {
 
   const handlePowerOn = () => {
     if (isPowered) return;
-    setIsPowered(true);
+    onPowerToggle();
   };
 
   return (
@@ -267,10 +271,10 @@ export default function HeroSection() {
           className="container relative mx-auto max-w-5xl text-center"
           style={{ zIndex: 6 }}
         >
-          <h1 className="text-balance text-5xl font-bold tracking-tighter text-[#111827] sm:text-7xl lg:text-8xl">
+          <h1 className="text-balance text-5xl font-bold tracking-tighter leading-[0.94] text-[#111827] sm:text-7xl lg:text-8xl">
             Ingenierí­a de Software para <span className="text-[#0052FF]">negocios</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-lg text-[#6B7280] sm:text-xl leading-relaxed">
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-[#6B7280] sm:text-xl leading-[1.42]">
             Desarrollador Full Stack Jr. Construyo soluciones escalables y optimizadas
             alineadas con objetivos estratégicos.
           </p>
@@ -284,15 +288,6 @@ export default function HeroSection() {
           </div>
         </motion.div>
       </motion.div>
-
-      {/* Dark veil — fades out when powered on */}
-      <motion.div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 20, background: "rgba(2, 6, 23, 0.94)" }}
-        animate={isPowered ? { opacity: 0 } : { opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      />
 
       <motion.div
         className="absolute inset-0 z-30"

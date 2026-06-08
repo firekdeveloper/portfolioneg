@@ -51,7 +51,7 @@ export default function ProjectsSection() {
 
         <div className="flex flex-col mb-16">
           <span className="text-[#0052FF] font-mono text-sm tracking-[0.3em] uppercase mb-4">03. Proyectos Destacados</span>
-          <h2 className="text-4xl font-bold text-[#111827] tracking-tight">
+          <h2 className="text-4xl font-bold text-[#111827] tracking-tight leading-[1.02]">
             Soluciones de software <br />
             <span className="text-[#6B7280] italic font-light">con impacto real.</span>
           </h2>
@@ -132,7 +132,7 @@ export default function ProjectsSection() {
                   </h3>
                 </a>
 
-                <p className="mb-5 text-[#6B7280] leading-relaxed">
+                <p className="mb-5 text-[#6B7280] leading-[1.45]">
                   {project.description}
                 </p>
 

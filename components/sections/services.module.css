@@ -84,11 +84,13 @@
   box-shadow: 0 20px 45px rgb(15 23 42 / 0.06);
 }
 
-.glassNode:hover {
-  transform: translateY(-10px) scale(1.02);
-  background: linear-gradient(170deg, rgb(239 246 255 / 0.95), rgb(232 240 255 / 0.9));
-  border-color: rgb(0 82 255 / 0.4);
-  box-shadow: 0 22px 48px rgb(0 82 255 / 0.16);
+@media (hover: hover) and (pointer: fine) {
+  .glassNode:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: linear-gradient(170deg, rgb(239 246 255 / 0.95), rgb(232 240 255 / 0.9));
+    border-color: rgb(0 82 255 / 0.4);
+    box-shadow: 0 22px 48px rgb(0 82 255 / 0.16);
+  }
 }
 
 .nodeHeader {
@@ -175,5 +177,16 @@
   .glassNode {
     min-height: 295px;
     padding: 22px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .glassNode {
+    cursor: default;
+  }
+
+  .glassNode:hover {
+    transform: none;
+    box-shadow: 0 20px 45px rgb(15 23 42 / 0.06);
   }
 }

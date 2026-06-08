@@ -131,6 +131,10 @@
   h2,
   h3,
   h4 {
-    @apply font-heading tracking-tight text-foreground;
+    @apply font-heading tracking-tight text-foreground leading-[1.02];
+  }
+  p,
+  li {
+    @apply leading-[1.45];
   }
 }

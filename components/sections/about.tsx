@@ -73,7 +73,7 @@ export default function AboutSection() {
               Hola, soy Iván. <span className="text-[#6B7280] italic font-light">Construyo el puente</span> <br className="hidden md:block" />
               entre el diseño y la infraestructura.
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-[#6B7280] text-lg leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-[#6B7280] text-lg leading-[1.45]">
               <p>
                 Mi viaje en el desarrollo comenzó por la curiosidad de entender cómo funcionan las cosas por dentro. Hoy, me especializo en crear aplicaciones web que no solo se ven bien, sino que son <b className="text-[#111827] font-semibold">escalables, rápidas y seguras</b>.
               </p>
